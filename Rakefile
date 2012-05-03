@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "hot_like_sauce"
   gem.homepage = "http://github.com/jstin/hot_like_sauce"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Rails gem for obscuring database fields}
+  gem.description = %Q{Rails gem for obscuring database fields. Uses OpenSSL.}
   gem.email = "jvaneaton@tangogroup.com"
   gem.authors = ["Justin Derrek Van Eaton"]
   # dependencies defined in Gemfile
