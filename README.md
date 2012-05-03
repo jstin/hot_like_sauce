@@ -1,4 +1,5 @@
-# hot-like-sauce
+# HotLikeSauce
+#### For when your data is too hot to view
 
 This is some sweet code for ActiveRecord (rails) that will allow you to obscure database fields. The data will always be obscured in the database, but can be read as plaintext or obscured. This is useful for admin views where you can display obscured data for people who shouldn't be seeing it.
 
