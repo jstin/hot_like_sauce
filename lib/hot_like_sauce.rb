@@ -62,13 +62,13 @@ module HotLikeSauce
 
         define_method field do
           super()
-          value = Base64::decode64(read_attribute(field))
+          value = read_attribute(field)
           self.class.unobscured_read_fields.include?(field) ? _unobscure(value) : value
         end
 
         define_method "#{field}=" do |value|
           super(value)
-          write_attribute(field, Base64::encode64(_obscure(value)))
+          write_attribute(field, _obscure(value))
         end
 
       end
@@ -98,11 +98,11 @@ module HotLikeSauce
   private
 
     def _obscure(value)
-      _crypt :encrypt, HotLikeSauce::secret_key, value
+      Base64::encode64(_crypt(:encrypt, HotLikeSauce::secret_key, value))
     end
 
     def _unobscure(value)
-      _crypt :decrypt, HotLikeSauce::secret_key, value
+      _crypt(:decrypt, HotLikeSauce::secret_key, Base64::decode64(value))
     end
 
     def _crypt(method, key, value)
