@@ -1,5 +1,4 @@
 require 'openssl'
-require 'iconv'
 require 'active_record'
 require 'base64'
 
