@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Derrek Van Eaton"]
   s.date = "2012-05-03"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Rails gem for obscuring database fields"
   s.email = "jvaneaton@tangogroup.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
