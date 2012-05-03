@@ -100,6 +100,11 @@ describe "HotLikeSauce" do
      g.contents.should == "!@$%^&*()\n"
     end
 
+    it "can obscure empty strings" do
+     g = Grape.create(:contents => "")
+     g.contents.should == ""
+    end
+
   end
 
   describe "validates proper fields" do

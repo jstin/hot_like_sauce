@@ -105,6 +105,7 @@ module HotLikeSauce
     end
 
     def _crypt(method, key, value)
+      return value unless value && value.length > 0
       cipher = OpenSSL::Cipher::Cipher.new(HotLikeSauce::crypto_method)
       cipher.send(method)
       cipher.pkcs5_keyivgen(key)
