@@ -1,8 +1,8 @@
-= hot-like-sauce
+# hot-like-sauce
 
 This is some sweet code for ActiveRecord (rails) that will allow you to obscure database fields. The data will always be obscured in the database, but can be read as plaintext or obscured. This is useful for admin views where you can display obscured data for people who shouldn't be seeing it.
 
-== Usage
+## Usage
 
 ```ruby
 gem 'hot_like_sauce'
@@ -28,7 +28,7 @@ p.body
 
 `Post.obscure_read_on_fields!` can be called with no arguments to set all attr_obscurable fields. The inverse method is `Post.unobscure_read_on_fields!`
 
-== Configuration
+## Configuration
 
 ```ruby
 HotLikeSauce.secret_key = "this-should-be-long-and-random"
@@ -36,7 +36,7 @@ HotLikeSauce.secret_key = "this-should-be-long-and-random"
 HotLikeSauce.crypto_method = "aes-256-cbc" # default's to aes-256-cbc
 ```
 
-== Contributing to hot-like-sauce
+## Contributing to hot-like-sauce
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
@@ -46,7 +46,7 @@ HotLikeSauce.crypto_method = "aes-256-cbc" # default's to aes-256-cbc
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2012 Justin Derrek Van Eaton. See LICENSE.txt for
 further details.
