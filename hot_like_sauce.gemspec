@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "hot_like_sauce"
-  s.version = ""
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Derrek Van Eaton"]
   s.date = "2012-05-03"
-  s.description = "Rails gem for obscuring database fields"
+  s.description = "TODO: longer description of your gem"
   s.email = "jvaneaton@tangogroup.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.md",
     "Rakefile",
+    "VERSION",
+    "hot_like_sauce.gemspec",
     "lib/hot_like_sauce.rb",
     "spec/.DS_Store",
     "spec/hot_like_sauce_spec.rb",
