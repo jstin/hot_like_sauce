@@ -48,13 +48,15 @@ module HotLikeSauce
 
     def attr_obscurable(*args)
       fields = args.map {|arg| arg if arg.is_a?(Symbol)}.compact
+      options = args.map {|arg| arg if arg.is_a?(Hash)}.compact.first
+      options ||= {}
 
       fields.each do |field|
 
         type = self.columns_hash[field.to_s].type
         raise "#{field} must be a string or text field" unless type == :string || type == :text
         self.obscured_fields = (self.obscured_fields << field).uniq
-        self.unobscured_read_fields = (self.unobscured_read_fields << field).uniq
+        self.unobscured_read_fields = (self.unobscured_read_fields << field).uniq unless options[:obscure_on_read] == true
 
         define_method field do
           super()

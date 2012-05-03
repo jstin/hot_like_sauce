@@ -26,6 +26,18 @@ p.body
 #=> "էu??+]?S???^Vx????gzq?'?"
 ```
 
+You can configure this on a per field basis by default
+
+```ruby
+class Post < ActiveRecord::Base
+  attr_obscurable :body, :obscure_on_read => true
+end
+
+p = Post.create(:body => "readable text")
+p.body
+#=> "էu??+]?S???^Vx????gzq?'?"
+```
+
 `Post.obscure_read_on_fields!` can be called with no arguments to set all attr_obscurable fields. The inverse method is `Post.unobscure_read_on_fields!`
 
 ## Configuration

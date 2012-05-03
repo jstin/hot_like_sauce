@@ -60,6 +60,20 @@ describe "HotLikeSauce" do
       p.title.should == "we all belong"
     end
 
+    it "can obscure fields on read by default" do
+      Object.send(:remove_const, :Post)
+      class Post < ActiveRecord::Base
+        attr_obscurable :title, :obscure_on_read => true
+      end
+
+      p = Post.new
+      p.title = "we all belong"
+      p.save
+      p.reload
+
+      p.title.should_not == "we all belong"
+    end
+
     it "can obscure individual fields on read" do
       p = Grape.new
       p.title = "i'm the doctor dawg"
