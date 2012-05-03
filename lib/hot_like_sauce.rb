@@ -1,5 +1,7 @@
 require 'openssl'
+require 'iconv'
 require 'active_record'
+require 'base64'
 
 module HotLikeSauce
 
@@ -60,13 +62,13 @@ module HotLikeSauce
 
         define_method field do
           super()
-          value = read_attribute(field)
+          value = Base64::decode64(read_attribute(field))
           self.class.unobscured_read_fields.include?(field) ? _unobscure(value) : value
         end
 
         define_method "#{field}=" do |value|
           super(value)
-          write_attribute(field, _obscure(value))
+          write_attribute(field, Base64::encode64(_obscure(value)))
         end
 
       end
@@ -107,9 +109,7 @@ module HotLikeSauce
       cipher = OpenSSL::Cipher::Cipher.new(HotLikeSauce::crypto_method)
       cipher.send(method)
       cipher.pkcs5_keyivgen(key)
-      result = cipher.update(value)
-      result << cipher.final
-      result.force_encoding('UTF-8')
+      cipher.update(value) + cipher.final
     end
 
   end
