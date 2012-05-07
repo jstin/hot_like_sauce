@@ -70,6 +70,12 @@ module HotLikeSauce
           write_attribute(field, _obscure(value))
         end
 
+        if options[:unobscured_accessor] == true
+          define_method "unobscured_#{field}" do
+            _unobscure(read_attribute(field))
+          end
+        end
+
       end
 
     end

@@ -95,6 +95,20 @@ describe "HotLikeSauce" do
       p.contents.should == "who are you to be yourself?"
     end
 
+    it "can obscure optionally have an unobscured accessor" do
+      g = Grape.create :title => "i'm the doctor dawg"
+
+      g.respond_to?(:unobscured_title).should == false
+
+      Object.send(:remove_const, :Grape) if defined?(Grape)
+      class Grape < ActiveRecord::Base
+        attr_obscurable :title, :contents, :unobscured_accessor => true
+      end
+
+      g = Grape.find g.id
+      g.unobscured_title.should == "i'm the doctor dawg"
+    end
+
     it "can obscure special charaters" do
      g = Grape.create(:contents => "!@$%^&*()\n")
      g.contents.should == "!@$%^&*()\n"
