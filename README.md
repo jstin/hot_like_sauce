@@ -41,6 +41,21 @@ p.body
 
 `Post.obscure_read_on_fields!` can be called with no arguments to set all attr_obscurable fields. The inverse method is `Post.unobscure_read_on_fields!`
 
+You can also create an accessor method to get the unobscured field(s).
+
+```ruby
+class Post < ActiveRecord::Base
+  attr_obscurable :body, :obscure_on_read => true, :unobscured_accessor => true
+end
+
+p = Post.create(:body => "readable text")
+p.body
+#=> "էu??+]?S???^Vx????gzq?'?"
+
+p.unobscured_body
+#=> "readable text"
+```
+
 ## Configuration
 
 ```ruby
