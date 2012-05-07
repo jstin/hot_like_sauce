@@ -24,7 +24,7 @@ p.body
 
 Post.obscure_read_on_fields!(:body)
 p.body
-#=> "էu??+]?S???^Vx????gzq?'?"
+#=> "fE4KSGqOoOej6BNsow0nTg=="
 ```
 
 You can configure this on a per field basis by default
@@ -36,7 +36,7 @@ end
 
 p = Post.create(:body => "readable text")
 p.body
-#=> "էu??+]?S???^Vx????gzq?'?"
+#=> "fE4KSGqOoOej6BNsow0nTg=="
 ```
 
 `Post.obscure_read_on_fields!` can be called with no arguments to set all attr_obscurable fields. The inverse method is `Post.unobscure_read_on_fields!`
@@ -50,7 +50,7 @@ end
 
 p = Post.create(:body => "readable text")
 p.body
-#=> "էu??+]?S???^Vx????gzq?'?"
+#=> "fE4KSGqOoOej6BNsow0nTg=="
 
 p.unobscured_body
 #=> "readable text"
