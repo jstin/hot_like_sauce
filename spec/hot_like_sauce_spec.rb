@@ -116,8 +116,8 @@ describe "HotLikeSauce" do
     end
 
     it "can obscure non-latin-1 characters" do
-     g = Grape.create(:contents => "áéîóü")
-     g.contents.should == "áéîóü"
+     g = Grape.create(:contents => "áéîóüaeiou")
+     g.contents.should == "áéîóüaeiou"
     end
 
     it "can obscure empty strings" do
