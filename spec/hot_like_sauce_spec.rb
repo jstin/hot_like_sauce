@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "HotLikeSauce" do
@@ -112,6 +113,11 @@ describe "HotLikeSauce" do
     it "can obscure special charaters" do
      g = Grape.create(:contents => "!@$%^&*()\n")
      g.contents.should == "!@$%^&*()\n"
+    end
+
+    it "can obscure non-latin-1 characters" do
+     g = Grape.create(:contents => "áéîóü")
+     g.contents.should == "áéîóü"
     end
 
     it "can obscure empty strings" do

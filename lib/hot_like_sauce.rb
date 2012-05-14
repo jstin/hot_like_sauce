@@ -107,7 +107,7 @@ module HotLikeSauce
     end
 
     def _unobscure(value)
-      _crypt(:decrypt, HotLikeSauce::secret_key, Base64::decode64(value))
+      _crypt(:decrypt, HotLikeSauce::secret_key, Base64::decode64(value)).force_encoding('UTF-8')
     end
 
     def _crypt(method, key, value)
