@@ -62,12 +62,13 @@ module HotLikeSauce
         define_method field do
           super()
           value = read_attribute(field)
+          return value if value.nil?
           self.class.unobscured_read_fields.include?(field) ? _unobscure(value) : value
         end
 
         define_method "#{field}=" do |value|
           super(value)
-          write_attribute(field, _obscure(value))
+          write_attribute(field, value.nil? ? nil : _obscure(value))
         end
 
         if options[:unobscured_accessor] == true

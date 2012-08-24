@@ -125,6 +125,14 @@ describe "HotLikeSauce" do
      g.contents.should == ""
     end
 
+    it "can handle nil fields" do
+     g = Grape.create(:contents => nil)
+     Grape.unobscure_read_on_fields!(:contents)
+     g.contents.should == nil
+     Grape.obscure_read_on_fields!(:contents)
+     g.contents.should == nil
+    end
+
   end
 
   describe "validates proper fields" do
