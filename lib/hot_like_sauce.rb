@@ -30,6 +30,7 @@ module HotLikeSauce
   end
 
   module ClassMethods
+    @@attr_obscurable_mutex = Mutex.new
 
     def obscured_fields
       @obscured_fields ||= []
@@ -56,8 +57,11 @@ module HotLikeSauce
 
         type = self.columns_hash[field.to_s].type
         raise "#{field} must be a string or text field" unless type == :string || type == :text
-        self.obscured_fields = (self.obscured_fields << field).uniq
-        self.unobscured_read_fields = (self.unobscured_read_fields << field).uniq unless options[:obscure_on_read] == true
+
+        @@attr_obscurable_mutex.synchronize do
+          self.obscured_fields = (self.obscured_fields << field).uniq
+          self.unobscured_read_fields = (self.unobscured_read_fields << field).uniq unless options[:obscure_on_read] == true
+        end
 
         define_method field do
           super()
@@ -78,7 +82,6 @@ module HotLikeSauce
         end
 
       end
-
     end
 
     def obscure_read_on_fields!(*fields_array)
