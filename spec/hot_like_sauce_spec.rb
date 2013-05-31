@@ -96,6 +96,17 @@ describe "HotLikeSauce" do
       p.contents.should == "who are you to be yourself?"
     end
 
+
+    it "will return nil on null obscured fields" do
+      p = Grape.new
+      p.save
+      p.reload
+
+      Post.obscure_read_on_fields!(:contents)
+      p.title.should == nil
+    end
+
+
     it "can obscure optionally have an unobscured accessor" do
       g = Grape.create :title => "i'm the doctor dawg"
 
